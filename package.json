@@ -1,0 +1,51 @@
+{
+  "name": "prova-pratica-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.16.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.72.0",
+    "sonner": "^2.0.7",
+    "wouter": "^3.9.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.39.1",
+    "eslint-plugin-import-helpers": "^2.0.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "jsdom": "^29.1.1",
+    "json-server": "^1.0.0-beta.15",
+    "postcss": "^8.5.8",
+    "prettier": "^3.8.1",
+    "sass": "^1.99.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^7.3.1",
+    "vitest": "^4.1.6"
+  }
+}
