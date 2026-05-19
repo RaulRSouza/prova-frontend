@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 
-import { Backdrop } from "@/components/Backdrop";
 import { Button } from "@/components/Button";
-import { FiltroBar } from "@/components/FiltroBar";
-import { ProdutoModal } from "@/components/ProdutoModal";
-import { ProdutoTable } from "@/components/ProdutoTable";
-import { Sidebar } from "@/components/Sidebar";
+
+import { Backdrop } from "./components/Backdrop";
+import { FiltroBar } from "./components/FiltroBar";
+import { ProdutoModal } from "./components/ProdutoModal";
+import { ProdutoTable } from "./components/ProdutoTable";
+import { Sidebar } from "./components/Sidebar";
 
 import { useProdutos } from "@/hooks/useProdutos";
 import { filtrarProdutos } from "@/lib/filtrarProdutos";
