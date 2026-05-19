@@ -1,0 +1,45 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Notebook Dell",
+      "descricao": "15 polegadas, 16GB RAM, SSD 512GB",
+      "preco": 3500,
+      "categoria": "Eletrônicos",
+      "status": "Ativo"
+    },
+    {
+      "id": "2",
+      "nome": "Camiseta Polo",
+      "descricao": "100% algodão, várias cores",
+      "preco": 89.9,
+      "categoria": "Roupas",
+      "status": "Ativo"
+    },
+    {
+      "id": "3",
+      "nome": "Arroz Integral",
+      "descricao": "Pacote 1kg, grão longo",
+      "preco": 12.5,
+      "categoria": "Alimentos",
+      "status": "Ativo"
+    },
+    {
+      "id": "4",
+      "nome": "Cadeira Gamer",
+      "descricao": "Ergonômica, reclinável 180°",
+      "preco": 1200,
+      "categoria": "Casa",
+      "status": "Inativo"
+    },
+    {
+      "id": "5",
+      "nome": "Tênis Running",
+      "descricao": "Solado amortecedor, respirável",
+      "preco": 299.9,
+      "categoria": "Esportes",
+      "status": "Ativo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
