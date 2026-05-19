@@ -1,10 +1,10 @@
 import type { ButtonHTMLAttributes } from "react";
 
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "outline" | "danger" | "ghost";
+type ButtonVariant = "primary" | "outline" | "danger";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -18,8 +18,6 @@ const variants: Record<ButtonVariant, string> = {
     "border border-gray-300 dark:border-gray-600 bg-transparent text-light-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
   danger:
     "bg-red-500 text-white hover:bg-red-600 disabled:opacity-50",
-  ghost:
-    "bg-transparent text-light-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
 };
 
 export function Button({

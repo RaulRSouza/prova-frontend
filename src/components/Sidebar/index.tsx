@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { Activity, ArrowRight, Moon, Plus, Sun } from "lucide-react";
-import { motion } from "framer-motion";
-import { useMotionValue, useSpring } from "framer-motion";
-
 import { useProdutoStore } from "@/store/useProdutoStore";
 import type { StatusProduto } from "@/types/produto";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { Activity, ArrowRight, Moon, Plus, Sun } from "lucide-react";
 
 /* Animated spring counter */
 function AnimatedNumber({ value }: { value: number }) {
@@ -69,7 +67,7 @@ export function Sidebar({ dark, onToggleTheme, onNovoProduto }: SidebarProps) {
   const ativos = produtos.filter((p) => p.status === "Ativo").length;
   const inativos = produtos.filter((p) => p.status === "Inativo").length;
 
-  const activeFilter = filtros.status as string;
+  const activeFilter = filtros.status;
 
   const handleKpi = (status: StatusProduto | "Todos") => {
     if (status === "Todos") {

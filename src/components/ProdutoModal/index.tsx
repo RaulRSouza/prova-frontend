@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-
-import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
-import { useProdutos } from "@/hooks/useProdutos";
 import { CATEGORIAS } from "@/types/produto";
 import type { Produto, ProdutoFormData } from "@/types/produto";
+import { motion } from "framer-motion";
 
 interface ProdutoModalProps {
   produto?: Produto | null;
   onFechar: () => void;
+  onSalvar: (data: ProdutoFormData) => Promise<void>;
 }
 
 const categoriaOptions = CATEGORIAS.map((c) => ({ value: c, label: c }));
@@ -22,10 +21,9 @@ const statusOptions = [
   { value: "Inativo", label: "Inativo" },
 ];
 
-export function ProdutoModal({ produto, onFechar }: ProdutoModalProps) {
+export function ProdutoModal({ produto, onFechar, onSalvar }: ProdutoModalProps) {
   const isEditando = !!produto;
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { criarProduto, atualizarProduto } = useProdutos();
 
   const { control, handleSubmit, reset } = useForm<ProdutoFormData>({
     defaultValues: {
@@ -60,15 +58,10 @@ export function ProdutoModal({ produto, onFechar }: ProdutoModalProps) {
   const onSubmit = async (data: ProdutoFormData) => {
     setIsSubmitting(true);
     try {
-      const payload = { ...data, preco: Number(data.preco) };
-      if (isEditando && produto) {
-        await atualizarProduto(produto.id, payload);
-      } else {
-        await criarProduto(payload);
-      }
+      await onSalvar({ ...data, preco: Number(data.preco) });
       onFechar();
     } catch {
-      // erro já tratado com toast no hook
+      // erro tratado pelo chamador
     } finally {
       setIsSubmitting(false);
     }
@@ -93,19 +86,16 @@ export function ProdutoModal({ produto, onFechar }: ProdutoModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 dark:border-white/5">
           <div>
-            <div>
-              <p className="mb-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-primary-500">
-                {isEditando ? "/ editar registro" : "/ novo registro"}
-              </p>
-              <h2 className="font-display text-xl font-bold text-light-text dark:text-dark-text">
-                {isEditando ? "Editar produto" : "Cadastrar produto"}
-              </h2>
-            </div>
-            <p className="mt-0.5 hidden text-xs text-gray-400">
-              {isEditando ? "Atualize os dados do produto" : "Preencha os campos para cadastrar"}
+            <p className="mb-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-primary-500">
+              {isEditando ? "/ editar registro" : "/ novo registro"}
             </p>
+            <h2 className="font-display text-xl font-bold text-light-text dark:text-dark-text">
+              {isEditando ? "Editar produto" : "Cadastrar produto"}
+            </h2>
           </div>
           <button
+            type="button"
+            aria-label="Fechar"
             onClick={onFechar}
             className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
           >
@@ -168,7 +158,6 @@ export function ProdutoModal({ produto, onFechar }: ProdutoModalProps) {
             rules={{ required: "Status é obrigatório" }}
           />
 
-          {/* Footer */}
           <div className="flex justify-end gap-3 pt-2">
             <Button
               type="button"

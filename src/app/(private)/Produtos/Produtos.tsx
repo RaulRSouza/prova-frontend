@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
 
 import { Backdrop } from "@/components/Backdrop";
 import { Button } from "@/components/Button";
@@ -8,10 +7,12 @@ import { FiltroBar } from "@/components/FiltroBar";
 import { ProdutoModal } from "@/components/ProdutoModal";
 import { ProdutoTable } from "@/components/ProdutoTable";
 import { Sidebar } from "@/components/Sidebar";
+
 import { useProdutos } from "@/hooks/useProdutos";
 import { filtrarProdutos } from "@/lib/filtrarProdutos";
 import { useProdutoStore } from "@/store/useProdutoStore";
-import type { Produto } from "@/types/produto";
+import type { Produto, ProdutoFormData } from "@/types/produto";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ProdutosProps {
   dark: boolean;
@@ -26,7 +27,7 @@ const fadeUp = (delay: number) => ({
 
 export function Produtos({ dark, onToggleTheme }: ProdutosProps) {
   const { produtos, filtros, isLoading } = useProdutoStore();
-  const { buscarProdutos, excluirProduto } = useProdutos();
+  const { buscarProdutos, criarProduto, atualizarProduto, excluirProduto } = useProdutos();
   const [produtoEditando, setProdutoEditando] = useState<Produto | null>(null);
   const [modalAberto, setModalAberto] = useState(false);
 
@@ -55,6 +56,14 @@ export function Produtos({ dark, onToggleTheme }: ProdutosProps) {
   const handleFecharModal = () => {
     setModalAberto(false);
     setProdutoEditando(null);
+  };
+
+  const handleSalvar = async (data: ProdutoFormData) => {
+    if (produtoEditando) {
+      await atualizarProduto(produtoEditando.id, data);
+    } else {
+      await criarProduto(data);
+    }
   };
 
   return (
@@ -167,7 +176,7 @@ export function Produtos({ dark, onToggleTheme }: ProdutosProps) {
 
       <AnimatePresence>
         {modalAberto && (
-          <ProdutoModal produto={produtoEditando} onFechar={handleFecharModal} />
+          <ProdutoModal produto={produtoEditando} onFechar={handleFecharModal} onSalvar={handleSalvar} />
         )}
       </AnimatePresence>
     </div>

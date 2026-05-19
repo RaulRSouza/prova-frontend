@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
 
 import { Button } from "@/components/Button";
+
 import type { Produto } from "@/types/produto";
+import { motion } from "framer-motion";
 
 interface ProdutoTableProps {
   produtos: Produto[];
@@ -109,7 +110,7 @@ export function ProdutoTable({
                   <StatusBadge status={produto.status} />
                 </td>
                 <td className="px-6 py-5">
-                  <div className="flex justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                  <div className="flex justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
                     <Button variant="outline" className="h-7 px-2.5 text-[10px]" onClick={() => onEditar(produto)}>
                       Editar
                     </Button>
