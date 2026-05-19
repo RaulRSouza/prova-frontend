@@ -65,15 +65,17 @@ SCSS cuida dos design tokens (`$brand-primary`, `$grid-size`, `$mono-stack`), do
 
 ```
 src/
-  api/           # instância axios
+  api/              # instância axios
   app/
     (private)/
-      Produtos/  # página principal
-  components/    # Backdrop, Sidebar, Button, Input, Select, FiltroBar, ProdutoTable, ProdutoModal
-  hooks/         # useProdutos (buscar, criar, atualizar, excluir)
-  lib/           # filtrarProdutos + testes
-  store/         # useProdutoStore (Zustand)
-  styles/        # global.scss (tokens, mixins, grid backdrop)
-  types/         # Produto, FiltroProduto, enums
-specs/           # spec, data-model, plano e checklist da feature
+      Produtos/
+        components/ # Backdrop, Sidebar, FiltroBar, ProdutoTable, ProdutoModal
+        Produtos.tsx
+  components/       # Button, Input, Select (primitivos genéricos)
+  hooks/            # useProdutos (buscar, criar, atualizar, excluir)
+  lib/              # filtrarProdutos + testes
+  store/            # useProdutoStore (Zustand)
+  styles/           # global.scss (tokens, mixins, grid backdrop)
+  types/            # Produto, FiltroProduto, enums
+specs/              # spec, data-model, plano e checklist da feature
 ```
